@@ -1,0 +1,45 @@
+{
+    "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "name": {
+            "type": "string"
+        },
+        "location": {
+            "type": "string"
+        },
+        "gitHubUsername": {
+            "type": "string"
+        },
+        "gitHubRepositoryName": {
+            "type": "string"
+        },
+        "gitHubPersonalAccessToken": {
+            "type": "securestring"
+        }
+    },
+    "resources": [
+        {
+            "apiVersion": "2019-12-01-preview",
+            "name": "[parameters('name')]",
+            "type": "Microsoft.Web/staticSites",
+            "location": "[parameters('location')]",
+            "properties": {
+                "repositoryToken": "[parameters('gitHubPersonalAccessToken')]",
+                "buildProperties": {
+                    "appLocation": "/"
+                },
+                "templateProperties": {
+                    "templateRepositoryUrl": "https://github.com/miwebst/supertemp",
+                    "owner": "[parameters('gitHubUsername')]",
+                    "repositoryName": "[parameters('gitHubRepositoryName')]",
+                    "isPrivate": true
+                }
+            },
+            "sku": {
+                "Tier": "Free",
+                "Name": "Free"
+            }
+        }
+    ]
+}
