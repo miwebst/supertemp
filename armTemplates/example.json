@@ -20,7 +20,7 @@
             "apiVersion": "2019-12-01-preview",
             "name": "[parameters('name')]",
             "type": "Microsoft.Web/staticSites",
-            "location": "West US 2",
+            "location": "Central US EUAP",
             "properties": {
                 "repositoryToken": "[parameters('githubPersonalAccessToken')]",
                 "buildProperties": {
