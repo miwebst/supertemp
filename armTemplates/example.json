@@ -5,16 +5,13 @@
         "name": {
             "type": "string"
         },
-        "location": {
+        "githubUsername": {
             "type": "string"
         },
-        "gitHubUsername": {
+        "githubRepositoryName": {
             "type": "string"
         },
-        "gitHubRepositoryName": {
-            "type": "string"
-        },
-        "gitHubPersonalAccessToken": {
+        "githubPersonalAccessToken": {
             "type": "securestring"
         }
     },
@@ -23,16 +20,16 @@
             "apiVersion": "2019-12-01-preview",
             "name": "[parameters('name')]",
             "type": "Microsoft.Web/staticSites",
-            "location": "[parameters('location')]",
+            "location": "West US 2",
             "properties": {
-                "repositoryToken": "[parameters('gitHubPersonalAccessToken')]",
+                "repositoryToken": "[parameters('githubPersonalAccessToken')]",
                 "buildProperties": {
                     "appLocation": "/"
                 },
                 "templateProperties": {
                     "templateRepositoryUrl": "https://github.com/miwebst/supertemp",
-                    "owner": "[parameters('gitHubUsername')]",
-                    "repositoryName": "[parameters('gitHubRepositoryName')]",
+                    "owner": "[parameters('githubUsername')]",
+                    "repositoryName": "[parameters('githubRepositoryName')]",
                     "isPrivate": true
                 }
             },
